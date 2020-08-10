@@ -1,0 +1,20 @@
+{
+  "name": "udemy",
+  "version": "1.0.0",
+  "description": "Learning Udemy TS course",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "lite-server"
+  },
+  "keywords": [
+    "udemy",
+    "course",
+    "test-ts"
+  ],
+  "author": "TeeZ0NE",
+  "license": "ISC",
+  "devDependencies": {
+    "lite-server": "^2.5.4"
+  }
+}
