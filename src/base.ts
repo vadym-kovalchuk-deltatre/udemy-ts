@@ -35,6 +35,6 @@ function counterWCb(a: number, b: number, cb: (num: number) => number) {
 
 console.log(
   counterWCb(1, 2, (result) => {
-    return result * 2;
+    return result * 3;
   })
 );
