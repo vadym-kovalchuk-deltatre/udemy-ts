@@ -9,4 +9,3 @@ function add(a, b, cb) {
 var sum = add(a, b, function (res) {
     return res + 1 / 10;
 });
-//# sourceMappingURL=app.js.map

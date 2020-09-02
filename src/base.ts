@@ -22,7 +22,7 @@ for (const tag of person.tags) {
   console.log(tag.toUpperCase());
 }
 
-enum Role {
+enum Role1 {
   ADMIN = "admin",
   USER = "user",
   CUSTOMER = 1,
@@ -34,7 +34,7 @@ function counterWCb(a: number, b: number, cb: (num: number) => number) {
 }
 
 console.log(
-  counterWCb(1, 2, (result) => {
+  counterWCb(person.age, 2, (result) => {
     return result * 3;
   })
 );

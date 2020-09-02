@@ -5,5 +5,5 @@ enum Role {
 }
 
 for (let role in Role) {
-  console.log(Role[role]);
+  console.log(Role[role as keyof typeof Role]);
 }
