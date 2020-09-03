@@ -1,4 +1,4 @@
-let person: {
+let personBase: {
   name: string;
   age: number;
   tags: string[];
@@ -18,7 +18,7 @@ let person: {
   tuple: [1, "admin"],
 };
 
-for (const tag of person.tags) {
+for (const tag of personBase.tags) {
   console.log(tag.toUpperCase());
 }
 
@@ -34,7 +34,7 @@ function counterWCb(a: number, b: number, cb: (num: number) => number) {
 }
 
 console.log(
-  counterWCb(person.age, 2, (result) => {
+  counterWCb(personBase.age, 2, (result) => {
     return result * 3;
   })
 );
