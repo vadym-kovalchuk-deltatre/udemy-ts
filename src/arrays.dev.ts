@@ -6,15 +6,15 @@ arr2.push(...arr1);
 console.log(arr2);
 
 let person: {
-  name: string;
+  namePerson: string;
   age: number;
 } = {
-  name: "John",
+  namePerson: "John",
   age: 21,
 };
 // copy object //
 let person2 = { ...person };
-person2.name = "Frederick Santiago";
+person2.namePerson = "Frederick Santiago";
 console.log(person, person2);
 
 // Reduce sum array //
@@ -24,3 +24,10 @@ const addReduce = (...arr: number[]) => {
   }, 0);
 };
 console.log(addReduce(...arr2));
+
+// Assign variables //
+const [numOne, numTwo] = arr1;
+console.log(numOne, numTwo);
+
+const { namePerson: namePerson2, age } = person2;
+console.log(`${namePerson2} age: ${age}`);
