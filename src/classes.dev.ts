@@ -9,10 +9,17 @@ accountingDepartment.printEmployees();
 const copyAccountingDepartment = {
 	id: 2,
 	name: "Copy Accounting",
-	describe: accountingDepartment.describe,
+	describe: () =>
+		console.info("Copy of AccountDepartment:" + copyAccountingDepartment.id),
 	employees: [],
+	addEmployee: accountingDepartment.addEmployee,
+	printEmployees: accountingDepartment.printEmployees,
 };
 console.log("copyAccountingDepartment :>> ", copyAccountingDepartment);
+copyAccountingDepartment.addEmployee("Boris Johnson");
+copyAccountingDepartment.describe();
+copyAccountingDepartment.printEmployees();
+
 // ----- IT Department ---- //
 const itDepartment = ITDepartment.getInstance();
 console.log(accountingDepartment);
@@ -24,3 +31,4 @@ console.log("servers", itDepartment.availableServerNames);
 itDepartment.availableServerName = "aws";
 console.log("servers " + itDepartment.availableServerNames);
 console.log(ITDepartment.defaultName);
+itDepartment.removeServerName("aws");

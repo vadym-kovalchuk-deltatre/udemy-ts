@@ -4,7 +4,7 @@ export abstract class Department {
 	constructor(public readonly id: number, public departmentName: string) {}
 
 	describe(this: Department) {
-		console.log(`dep id: ${this.id} dep name: ${this.departmentName}`);
+		console.info(`dep id: ${this.id} dep name: ${this.departmentName}`);
 	}
 
 	addEmployee(name: string) {
