@@ -1,90 +1,97 @@
 // Or replace interface to type, it'll be the same //
 // type PersonInterface = {} //
-interface PersonInterface {
+interface EmailGetter {
+	getEmail(): string;
+}
+interface PersonInterface extends EmailGetter {
 	firstName: string;
 	readonly email: string;
 	phones: string[];
-	address?: string;
+	phoneNumber: string;
 
-	addPhoneNumber(phoneNumber: string): void;
-	setAddres?(addres: string): void;
 	getPhoneNumbers(): string[];
 	getInfo(): string;
 }
 
-interface EmailGetter extends PersonInterface {
-	getEmail(): string;
-	getAddress?(): string;
+interface AddressGetter {
+	address: string;
 }
-
-class Person implements EmailGetter {
+class Person implements PersonInterface {
 	readonly phones: string[] = [];
-	constructor(
-		public firstName: string,
-		readonly email: string,
-		public address: string = "Default address"
-	) {}
+	address: string = "";
+	constructor(public firstName: string, readonly email: string) {}
 
-	addPhoneNumber(phone: string): void {
+	set phoneNumber(phone: string) {
 		this.phones.push(phone);
 	}
 
-	setAddres(addres: string): void {
+	set addr(addres: string) {
 		this.address = addres;
 	}
 
-	getPhoneNumbers() {
+	getPhoneNumbers(): string[] {
 		return this.phones;
 	}
 
 	getInfo(): string {
-		return `
-    Person name is: ${this.firstName},
-    email: ${this.email},
-    phones: ${this.phones},
-    address: ${this.address}`;
+		let info = "";
+		if (this.firstName != "")
+			info += `Person name is: ${this.firstName}` + "\n";
+		if (this.email != "") info += `email: ${this.email}` + "\n";
+		if (this.phones.length != 0) info += `phones: ${this.phones}` + "\n";
+		if (this.address != "") info += `address: ${this.address}`;
+		return info;
 	}
 
 	getEmail(): string {
 		return this.email;
 	}
 
-	getAddress(): string {
+	get addr(): string {
 		return this.address;
 	}
 }
 
 // ~~~~~~~~~~~ Create one Person ~~~~~~~~~~ //
-let person1 = new Person("Teez0ne", "teez0ne@");
-console.log(person1.getInfo());
-person1.addPhoneNumber("(270) 307-7745");
-person1.addPhoneNumber("(419) 471-3518");
-person1.setAddres("655 Hanuwi Pass");
-console.log(person1.getInfo());
+let person1 = new Person("Teez0ne Class", "teez0ne@");
+console.info(person1.getInfo());
+person1.phoneNumber = "(270) 307-7745";
+person1.phoneNumber = "(419) 471-3518";
+person1.addr = "655 Hanuwi Pass";
+console.info(person1.getInfo());
 console.log("User email method: " + person1.getEmail());
 
 // ~~~~ Create Person 2 from Interface ~~~ //
-let person2: PersonInterface = {
-	firstName: "Margaret Clarke",
+type PersonI = PersonInterface &
+	AddressGetter & {
+		getInfo(): string;
+	};
+let person2: PersonI = {
+	firstName: "Margaret Clarke PersonI",
 	email: "hannu@lu.sd",
 	phones: ["(641) 663-7883"],
 	address: "New Address",
-	addPhoneNumber(phoneNumber: string): void {
+	set phoneNumber(phoneNumber: string) {
 		this.phones.push(phoneNumber);
 	},
 	getPhoneNumbers(): string[] {
 		return this.phones;
 	},
+
+	getEmail(): string {
+		return this.email;
+	},
 	getInfo() {
-		return "" + this.firstName + " email: " + this.email + this.address;
+		return "PI " + this.firstName + " email: " + this.email + this.address;
 	},
 };
 
-console.log(person2.getPhoneNumbers());
-person2.addPhoneNumber("(372) 950-2423");
-console.log(person2.getInfo());
+console.log("Person2 phone numbers:", person2.getPhoneNumbers());
+person2.phoneNumber = "(372) 950-2423";
+console.info(person2.getInfo());
 
 // ~~~~~~~~~~~~~~~ Person 3 ~~~~~~~~~~~~~~ //
-let person3: PersonInterface;
-person3 = new Person("Mark Gardner", "cac@ikvarcir.ba");
-console.log(person3.getInfo());
+let person3: PersonInterface & AddressGetter;
+person3 = new Person("Mark Gardner Person3", "cac@ikvarcir.ba");
+person3.address = "1607 Lako View";
+console.info(person3.getInfo());
