@@ -35,11 +35,10 @@ class Person implements PersonInterface {
 
 	getInfo(): string {
 		let info = "";
-		if (this.firstName != "")
-			info += `Person name is: ${this.firstName}` + "\n";
-		if (this.email != "") info += `email: ${this.email}` + "\n";
-		if (this.phones.length != 0) info += `phones: ${this.phones}` + "\n";
-		if (this.address != "") info += `address: ${this.address}`;
+		if (this.firstName) info += `Person name is: ${this.firstName}` + "\n";
+		if (this.email) info += `email: ${this.email}` + "\n";
+		if (this.phones.length > 0) info += `phones: ${this.phones}` + "\n";
+		if (this.address) info += `address: ${this.address}`;
 		return info;
 	}
 
