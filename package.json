@@ -1,20 +1,22 @@
 {
-  "name": "udemy",
-  "version": "1.0.0",
-  "description": "Learning Udemy TS course",
-  "main": "app.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "lite-server"
-  },
-  "keywords": [
-    "udemy",
-    "course",
-    "test-ts"
-  ],
-  "author": "TeeZ0NE",
-  "license": "ISC",
-  "devDependencies": {
-    "lite-server": "^2.6.1"
-  }
+	"name": "udemy",
+	"version": "1.0.0",
+	"description": "Learning Udemy TS course",
+	"main": "app.js",
+	"scripts": {
+		"test": "echo \"Error: no test specified\" && exit 1",
+		"start": "lite-server",
+		"ts-node-classes": "ts-node .\\src\\classes.dev.ts"
+	},
+	"keywords": [
+		"udemy",
+		"course",
+		"test-ts"
+	],
+	"author": "TeeZ0NE",
+	"license": "ISC",
+	"devDependencies": {
+		"lite-server": "^2.6.1",
+		"socket.io-parser": "^4.0.4"
+	}
 }
