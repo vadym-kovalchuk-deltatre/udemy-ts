@@ -14,11 +14,11 @@ interface PersonInterface extends EmailGetter {
 }
 
 interface AddressGetter {
-	address: string;
+	address?: string;
 }
 class Person implements PersonInterface {
 	readonly phones: string[] = [];
-	address: string = "";
+	address?: string;
 	constructor(public firstName: string, readonly email: string) {}
 
 	set phoneNumber(phone: string) {
@@ -47,7 +47,7 @@ class Person implements PersonInterface {
 	}
 
 	get addr(): string {
-		return this.address;
+		return this.address ? this.address : "Unknown";
 	}
 }
 
