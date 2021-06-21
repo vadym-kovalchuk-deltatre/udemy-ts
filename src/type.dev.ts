@@ -29,7 +29,6 @@ interface StringArray2 {
 }
 
 const arr2: StringArray2 = { animal: "dog", name: "bob", 2: 12, age: 2 };
-console.log(arr2[2]);
 
 type Box<Type> = {
 	w: Type;
