@@ -67,5 +67,5 @@ function calculateSquare(figure: Corner): number {
 	return square;
 }
 
-// console.log(calculateSquare({ w: 200, h: 20, type: "rectangle" }));
+console.log(calculateSquare({ w: 200, h: 20, type: "rectangle" }));
 console.log(calculateSquare({ w: 30, type: "box" }));
