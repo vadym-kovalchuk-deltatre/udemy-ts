@@ -1,69 +1,25 @@
-abstract class Department {
-	protected employees: string[] = [];
-
-	constructor(public readonly id: number, public departmentName: string) {}
-
-	describe(this: Department) {
-		console.log(`dep id: ${this.id} dep name: ${this.departmentName}`);
-	}
-
-	addEmployee(name: string) {
-		this.employees.push(name);
-	}
-
-	abstract printEmployees(): void | never;
-}
-
-class AccountDepartment extends Department {
-	constructor(public readonly id: number, public nameDepartment: string) {
-		super(id, nameDepartment);
-	}
-	printEmployees() {
-		console.log("Account department employess: ", this.employees);
-	}
-}
-class ITDepartment extends Department {
-	private serverNames: string[] = [];
-	static defaultName = "IT dep";
-	private static instance: ITDepartment;
-
-	private constructor(public readonly id: number) {
-		super(id, "IT");
-	}
-
-	get availableServerNames() {
-		return this.serverNames;
-	}
-
-	set availableServerName(serverName: string) {
-		this.serverNames.push(serverName);
-	}
-
-	printEmployees(): void | never {
-		if (this.employees.length > 4) throw new Error("There're lot of employees");
-		console.log(`${this.departmentName} employees: ${this.employees}`);
-	}
-
-	static getInstance() {
-		if (!ITDepartment.instance) {
-			this.instance = new ITDepartment(3);
-		}
-		return this.instance;
-	}
-}
+import { AccountDepartment } from "../src/AccountDepartment.dev";
+import { ITDepartment } from "./ITDepartment.dev";
 //  Simple accounting department  //
-let accountingDepartment = new AccountDepartment(1, "accounting");
+const accountingDepartment = new AccountDepartment(1, "accounting");
 accountingDepartment.printEmployees();
 accountingDepartment.addEmployee("TeeZ0NE");
 accountingDepartment.printEmployees();
 
-let copyAccountingDepartment = {
+const copyAccountingDepartment = {
 	id: 2,
 	name: "Copy Accounting",
-	describe: accountingDepartment.describe,
+	describe: () =>
+		console.info("Copy of AccountDepartment:" + copyAccountingDepartment.id),
 	employees: [],
+	addEmployee: accountingDepartment.addEmployee,
+	printEmployees: accountingDepartment.printEmployees,
 };
 console.log("copyAccountingDepartment :>> ", copyAccountingDepartment);
+copyAccountingDepartment.addEmployee("Boris Johnson");
+copyAccountingDepartment.describe();
+copyAccountingDepartment.printEmployees();
+
 // ----- IT Department ---- //
 const itDepartment = ITDepartment.getInstance();
 console.log(accountingDepartment);
@@ -76,3 +32,4 @@ itDepartment.availableServerName = "aws";
 itDepartment.availableServerName = "gDrive";
 console.log("servers " + itDepartment.availableServerNames);
 console.log(ITDepartment.defaultName);
+itDepartment.removeServerName("aws");
